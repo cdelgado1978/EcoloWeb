@@ -15,6 +15,22 @@ namespace EcoloWeb.Controllers
             return View();
         }
 
+
+        public IActionResult Intro()
+        {
+            return View();
+        }
+
+        public IActionResult Metodologia()
+        {
+            return View();
+        }
+
+        public IActionResult Temas()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
