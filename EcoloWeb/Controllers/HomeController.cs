@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EcoloWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcoloWeb.Controllers
 {
@@ -21,11 +22,14 @@ namespace EcoloWeb.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Metodologia()
         {
             return View();
         }
 
+
+        [Authorize]
         public IActionResult Temas()
         {
             return View();
