@@ -48,7 +48,7 @@ namespace EcoloWeb.Data.Entity.Identity
 
             return _fullname.Value;
 
-
+            
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using EcoloWeb.Data.Entity.Identity;
+﻿using System;
+using EcoloWeb.Data.Entity.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,8 @@ namespace EcoloWeb.Data
             //SeedData(builder);
 
         }
+
+   
 
         #region Identity
 

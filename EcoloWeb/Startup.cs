@@ -83,7 +83,8 @@ namespace EcoloWeb
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddRazorPagesOptions(options => {
+                .AddRazorPagesOptions(options =>
+                {
                     options.AllowAreas = true;
                     options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
                     options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
@@ -91,7 +92,7 @@ namespace EcoloWeb
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -114,9 +115,101 @@ namespace EcoloWeb
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                name: "areaRoute",
+                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CreateUserRoles(services).Wait();
         }
+
+        #region User Role Seed Data    
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var ADMIN_MAIL = "admin@ecoloweb.com";
+            var AUDITOR_MAIL = "auditor@ecoloweb.com";
+            var DEMO_USER_MAIL = "demo@ecoloweb.com";
+
+
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+            await SeedRoles(serviceProvider);
+
+
+            ApplicationUser AdminUser = new ApplicationUser()
+            {
+                Name = "Admin",
+                Lastname = "User",
+                Email = ADMIN_MAIL,
+                UserName = ADMIN_MAIL
+
+            };
+            await UserManager.CreateAsync(AdminUser, "admin123");
+
+
+            ApplicationUser AuditorUser = new ApplicationUser()
+            {
+                Name = "Auditor",
+                Lastname = "User",
+                Email = AUDITOR_MAIL,
+                UserName = AUDITOR_MAIL
+
+            };
+            await UserManager.CreateAsync(AuditorUser, "auditor123");
+
+
+
+            ApplicationUser Demouser = new ApplicationUser()
+            {
+                Name = "Demo",
+                Lastname = "User",
+                Email = DEMO_USER_MAIL,
+                UserName = DEMO_USER_MAIL
+
+            };
+            await UserManager.CreateAsync(Demouser, "demo123");
+
+
+            //Asigna Rol a los Usuarios.
+            await AddRoleToUser(UserManager, ADMIN_MAIL, "Admin");
+            await AddRoleToUser(UserManager, AUDITOR_MAIL, "Auditor");
+            await AddRoleToUser(UserManager, DEMO_USER_MAIL, "Usuario");
+
+        }
+
+        private static async Task AddRoleToUser(UserManager<ApplicationUser> UserManager, string userName, string Rol)
+        {
+            ApplicationUser user = await UserManager.FindByNameAsync(userName);
+
+            await UserManager.AddToRoleAsync(user, Rol);
+
+        }
+
+        private static async Task SeedRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+
+            IdentityResult roleResult;
+
+
+            //Adding Admin, Usuario Role
+            var AdminRoleCheck = await RoleManager.RoleExistsAsync("Admin");
+            var AuditorRoleCheck = await RoleManager.RoleExistsAsync("Auditor");
+            var UsuarioRoleCheck = await RoleManager.RoleExistsAsync("Usuario");
+
+
+            //create the roles and seed them to the database
+            if (!AdminRoleCheck) { roleResult = await RoleManager.CreateAsync(new ApplicationRole("Admin")); }
+            if (!AuditorRoleCheck) { roleResult = await RoleManager.CreateAsync(new ApplicationRole("Auditor")); }
+            if (!UsuarioRoleCheck) { roleResult = await RoleManager.CreateAsync(new ApplicationRole("Usuario")); }
+
+        }
+
+        #endregion
     }
 }
+
+
