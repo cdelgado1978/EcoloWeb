@@ -3,14 +3,8 @@ Proyecto para Educación Ambiental.
 
 ## Usuarios para prueba.
 
-Usuario Normal:
-username: demo@ecoloweb.com
-pass: demo123
-
-Auditor:
-username: auditor@ecoloweb.com
-pass: auditor123
-
-Admin:
-username: admin@ecoloweb.com
-pass: admin123
+Role | Usuario | Pass
+-----|---------|--------------------
+Usuario Normal | demo@ecoloweb.com | demo123
+Auditor | auditor@ecoloweb.com | auditor123
+Admin | admin@ecoloweb.com | admin123
