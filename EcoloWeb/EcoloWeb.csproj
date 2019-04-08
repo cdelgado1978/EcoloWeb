@@ -19,7 +19,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Auditor\Data\" />
     <Folder Include="Areas\Auditor\Models\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>
