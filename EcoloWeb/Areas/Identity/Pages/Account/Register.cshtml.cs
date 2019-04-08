@@ -20,6 +20,11 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        public string Validar1 { get; set; }
+        private bool Tipo = true;
+
+
+
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -51,7 +56,6 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             [Display(Name = "Apellidos")]
             public string LastName { get; set; }
 
-           
             [Display(Name = "Fecha Nacimiento")]
             public DateTime DOB { get; set; }
 
@@ -59,6 +63,8 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             [Display(Name = "Telefono")]
             public string Telefono { get; set; }
 
+
+            public string Registro { get; set; }
 
             [Required]
             [EmailAddress]
@@ -77,16 +83,22 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-        public void OnGet(string returnUrl = null)
+        public void OnGet([FromQuery] string Validar, string returnUrl = null)
         {
+            Validar1 = Validar;
+            //La primera vez que carga si toma el valor 
+
             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+
+        public async Task<IActionResult> OnPostAsync(string Validar1, string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
+
+
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, Lastname = Input.LastName, PhoneNumber = Input.Telefono, DOB = Input.DOB };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
@@ -94,14 +106,32 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
                     _logger.LogInformation("User created a new account with password.");
 
 
-                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", $"{user.Name} {user.Lastname}"));
 
-                
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    if (Validar1 == "Personal")
+                    {
+                        Tipo = false;
+                        await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Personal", $"{Tipo} "));
+                    }
+                    else if (Validar1 == "Institución")
+                    {
+                        Tipo = true;
+                        await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Institución", $"{Tipo} "));
+                    }
+
+                    else
+                    {
+                        await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", $"{user.Name} {user.Lastname}"));
+                    }
+
+
+
+
+
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { userId = user.Id,  code },
+                        values: new { userId = user.Id, code },
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
@@ -120,4 +150,5 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             return Page();
         }
     }
+
 }
