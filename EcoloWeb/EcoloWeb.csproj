@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-EcoloWeb-CCFB11A7-3F38-4422-9429-01F01C10305F</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
 
@@ -19,6 +20,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Auditor\Data\" />
     <Folder Include="Areas\Auditor\Models\" />
+    <Folder Include="wwwroot\Images\" />
   </ItemGroup>
 
 </Project>

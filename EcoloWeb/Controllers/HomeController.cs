@@ -28,6 +28,12 @@ namespace EcoloWeb.Controllers
             return View();
         }
 
+        public IActionResult Registro()
+        {
+            return View();
+        }
+
+
 
         [Authorize]
         public IActionResult Temas()
