@@ -20,8 +20,10 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        public string Validar1 { get; set; }
-        private bool Tipo = true;
+
+
+        //public string Validar1 { get; set; }
+
 
 
 
@@ -64,7 +66,7 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             public string Telefono { get; set; }
 
 
-            public string Registro { get; set; }
+            public string TipoRegistro { get; set; }
 
             [Required]
             [EmailAddress]
@@ -83,18 +85,24 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
         }
 
-        public void OnGet([FromQuery] string Validar, string returnUrl = null)
+        public void OnGet([FromQuery] string tipoRegistro, string returnUrl = null)
         {
-            Validar1 = Validar;
+            ViewData["tipoRegistro"] = tipoRegistro;
+
             //La primera vez que carga si toma el valor 
 
             ReturnUrl = returnUrl;
         }
 
 
-        public async Task<IActionResult> OnPostAsync(string Validar1, string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(string tipoRegistro, string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
+
+
+            var esInstitucional = (tipoRegistro == "Institucional");
+
+
             if (ModelState.IsValid)
             {
 
@@ -107,25 +115,21 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
 
 
 
-                    if (Validar1 == "Personal")
+                    switch (tipoRegistro)
                     {
-                        Tipo = false;
-                        await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Personal", $"{Tipo} "));
-                    }
-                    else if (Validar1 == "Institución")
-                    {
-                        Tipo = true;
-                        await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Institución", $"{Tipo} "));
-                    }
 
-                    else
-                    {
-                        await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", $"{user.Name} {user.Lastname}"));
+                        case "Institucional":
+                            esInstitucional = true; await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Institucional", $"{esInstitucional} "));
+                            break;
+
+                        default:
+                            await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("Personal", $"{esInstitucional} "));
+                            break;
                     }
 
 
-
-
+                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", $"{user.Name} {user.Lastname}"));
+                    
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(

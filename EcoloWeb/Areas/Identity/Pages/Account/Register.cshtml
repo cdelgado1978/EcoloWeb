@@ -8,20 +8,21 @@
 <div class="row" align="center">
 
     <div class="form-group col-md-12">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" asp-route-Validar="@Model.Validar1">
+        @*asp-route-Validar="@Model.Validar1"*@
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
 
             <h4 class="text-primary">Crea una cuenta nueva.</h4>
-          
-           
+
+
             <div class="col-md-8 col-md-offset-2 text-left">
                 <section>
                     <hr />
                     <br />
-                    
+
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-row">
 
-                        <input asp-for="Validar1" type="hidden">
+                        <input name="tipoRegistro" type="hidden" value="@ViewBag.tipoRegistro">
 
                         <div class="form-group col-md-6">
                             <label asp-for="Input.Name"></label>
