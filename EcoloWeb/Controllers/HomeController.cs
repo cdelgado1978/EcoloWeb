@@ -69,24 +69,12 @@ namespace EcoloWeb.Controllers
         public async Task<IActionResult> Compromiso()
         {
 
-
-            //var Tienda = from m in _context.Compromisos.Include(a => a.Notas) select m;
-
-            //if (!String.IsNullOrEmpty(Buscar))
-            //{
-            //    Tienda = Tienda.Where(s => s.Producto.Contains(Buscar));
-            //}
             return View(await _context.Compromisos.ToListAsync());
 
-            //return View(await Tienda.ToListAsync());
-
+           
 
         }
-      /*  public IActionResult Compromiso()
-        {
-            return View();
-        }
-        */
+    
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Notas")] Compromiso compromiso)
