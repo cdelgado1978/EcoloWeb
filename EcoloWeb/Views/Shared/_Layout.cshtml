@@ -13,16 +13,17 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EcoloWeb</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-leaf"></i>EcoloWeb</a>
+                <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -30,32 +31,41 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Intro">Introducción General</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Intro">Introducción General</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Metodologia">Metodología de Presentación</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Metodologia">Metodología de Presentación</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Temas">Temas</a>
+                            <div class="dropdown show">
+                                <a class="nav-link text-white dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Temas
+                                </a>
 
-                            </li>
+                                <div class="dropdown-menu bg-info" aria-labelledby="dropdownMenuLink">
+
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Temas">Temas</a>
+
+
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Compromiso">Compromisos</a>
+                                </div>
+                            </div>
                             if (User.IsInRole("Auditor") || User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Auditor" asp-controller="Home" asp-action="Index">Auditor</a>
+                                    <a class="nav-link text-white" asp-area="Auditor" asp-controller="Home" asp-action="Index">Auditor</a>
                                 </li>
                             }
 
                             if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
                                 </li>
                             }
 

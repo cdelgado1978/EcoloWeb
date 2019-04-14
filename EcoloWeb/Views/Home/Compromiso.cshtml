@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EcoloWeb.Data.Entity.Identity.Compromiso>
+
+@{
+    ViewData["Title"] = "Compromiso";
+}
+
+<h1 class="text-center">Compromiso</h1>
+<hr />
+
+<form class="form-inline" asp-controller="Create" asp-action="Compromiso">
+    <div class="form-group">
+        <input type="text" class="form-control" name="Buscar" placeholder="Nombre"><hr />
+        <span class="input-group-btn" style="width:25%;">
+            <input class="btn btn-primary btn-block" type="submit" value="Buscar" />
+        </span>
+    </div>
+
+</form>
+<hr />
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="row">
+                    @Html.DisplayNameFor(model => model.Notas)
+                </th>
+                <th scope="row">
+                    @Html.DisplayNameFor(model => model.CreateBy)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateBy)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+ </div>
