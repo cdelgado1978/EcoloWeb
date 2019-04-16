@@ -7,6 +7,15 @@
     <LangVersion>7.1</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20190410031709_dbUpdate.cs" />
+    <Compile Remove="Data\Migrations\20190410031709_dbUpdate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190414140302_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20190414140302_InitialCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190414140527_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20190414140527_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

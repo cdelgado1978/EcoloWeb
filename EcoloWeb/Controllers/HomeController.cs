@@ -5,12 +5,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EcoloWeb.Models;
+using EcoloWeb.Data;
 using Microsoft.AspNetCore.Authorization;
+using EcoloWeb.Data.Entity;
+using EcoloWeb.Data.Entity.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcoloWeb.Controllers
 {
     public class HomeController : Controller
     {
+
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -51,5 +63,32 @@ namespace EcoloWeb.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        ///Esto tiene que ver con la parte del Comprimiso mientras se ubica 
+
+        public async Task<IActionResult> Compromiso()
+        {
+
+            return View(await _context.Compromisos.ToListAsync());
+
+           
+
+        }
+    
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Notas")] Compromiso compromiso)
+        {
+          
+            if (ModelState.IsValid)
+            {
+                _context.Add(compromiso);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+ 
+            return View(compromiso);
+        }
+
     }
 }

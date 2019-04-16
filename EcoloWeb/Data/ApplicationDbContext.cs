@@ -35,6 +35,7 @@ namespace EcoloWeb.Data
         public virtual DbSet<ApplicationUserToken> ApplicationUserToken { get; set; }
 
         #endregion
+        public virtual DbSet<Compromiso> Compromisos { get; set; }
     }
 
 

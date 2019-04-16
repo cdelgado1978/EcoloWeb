@@ -1,11 +1,11 @@
-﻿
-@{
-    ViewData["Title"] = "Temas";
-}
+﻿@model EcoloWeb.Data.Entity.Identity.Compromiso
+
+
+
 
 <h1>Temas</h1>
 
-<hr/>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <div class="card mb-4 shadow-sm" style="width: 18rem;">
@@ -15,20 +15,32 @@
                 <p class="card-text">
                     Ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut.
                 </p>
-                <a href="#" class="btn btn-primary">Entrar</a>
+                <div>
+                    <a href="#" class="btn btn-primary">Entrar</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Crear compromiso
+                    </button>
+
+                </div>
             </div>
         </div>
     </div>
 
     <div class="col-md-4">
         <div class="card mb-4 shadow-sm" style="width: 18rem;">
-            <img class="card-img-top" data-src="holder.js/286x180?theme=thumb&bg=55595c&fg=eceeef&text=Cuencas" alt="Card image cap">
+            <img class="card-img-top" data-src="holder.js/286x180?theme=thumb&bg=55595c&fg=eceeef&text=Cuencas" alt="Card image cap ">
             <div class="card-body">
                 <h5 class="card-title">Yaque del Sur</h5>
                 <p class="card-text">
                     Ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut.
                 </p>
-                <a href="#" class="btn btn-primary">Entrar</a>
+                <div>
+                    <a href="#" class="btn btn-primary">Entrar</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Crear compromiso
+                    </button>
+
+                </div>
             </div>
         </div>
     </div>
@@ -41,12 +53,44 @@
                 <p class="card-text">
                     Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit, vehicula ut laoreet ac, metus vel.
                 </p>
-                <a href="#" class="btn btn-primary">Entrar</a>
+                <div>
+                    <a href="#" class="btn btn-primary">Entrar</a>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Crear compromiso
+                    </button>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+
+<!-- Modal -->
+<form  asp-action="Create" >
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary" id="exampleModalLongTitle">COMPROMISO</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label class="control-label text-dark">Yo me comprometo:</label>
+                    <textarea class="form-control" asp-for="Notas" rows="10" cols="63">
+                   </textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Guardar Compromiso" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 @section scripts{
     <script src="~/lib/holder/holder.min.js"></script>
 

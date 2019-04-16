@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoloWeb.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190410031709_dbUpdate")]
-    partial class dbUpdate
+    [Migration("20190414141011_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -78,6 +78,31 @@ namespace EcoloWeb.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("EcoloWeb.Data.Entity.Identity.Compromiso", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("CreateBy");
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<bool>("Inactive");
+
+                    b.Property<DateTime>("LastModificationDate");
+
+                    b.Property<Guid>("ModifiedBy");
+
+                    b.Property<string>("Notas")
+                        .IsRequired()
+                        .HasColumnType("char(600)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Compromisos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
