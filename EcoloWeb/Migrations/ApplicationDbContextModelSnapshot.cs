@@ -4,16 +4,14 @@ using EcoloWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EcoloWeb.Data.Migrations
+namespace EcoloWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190414141011_InitialCreate")]
-    partial class InitialCreate
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +26,12 @@ namespace EcoloWeb.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<DateTime>("Birthdate");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Contact");
 
                     b.Property<DateTime>("DOB");
 
@@ -52,13 +54,21 @@ namespace EcoloWeb.Data.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
+                    b.Property<string>("Occupation");
+
                     b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneCompany");
+
+                    b.Property<string>("PhoneHouse");
 
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("PhoneNumer");
+
+                    b.Property<string>("Profession");
 
                     b.Property<string>("SecurityStamp");
 

@@ -25,6 +25,24 @@ namespace EcoloWeb.Data.Entity.Identity
         [PersonalData]
         public string PhoneNumer { get; set; }
 
+        [PersonalData]
+        public string Occupation { get; set; }
+
+        [PersonalData]
+        public string Profession { get; set; }
+
+        [PersonalData]  
+        public string PhoneHouse { get; set; }
+
+        [PersonalData]
+        public string PhoneCompany { get; set; }
+
+        [PersonalData]
+        public string Contact { get; set; }
+
+        [PersonalData] 
+        public DateTime Birthdate { get; set; }
+
         //public virtual ICollection<ApplicationUserClaim> Claims { get; set; }
         //public virtual ICollection<ApplicationUserLogin> Logins { get; set; }
         //public virtual ICollection<ApplicationUserToken> Tokens { get; set; }

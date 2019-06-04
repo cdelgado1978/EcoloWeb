@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoloWeb.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190321200339_ChangeIdentityUserToApplicationUser")]
-    partial class ChangeIdentityUserToApplicationUser
+    [Migration("20190604184058_Initialcreate")]
+    partial class Initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -28,8 +28,12 @@ namespace EcoloWeb.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<DateTime>("Birthdate");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
+
+                    b.Property<string>("Contact");
 
                     b.Property<DateTime>("DOB");
 
@@ -52,13 +56,21 @@ namespace EcoloWeb.Data.Migrations
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
 
+                    b.Property<string>("Occupation");
+
                     b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneCompany");
+
+                    b.Property<string>("PhoneHouse");
 
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("PhoneNumer");
+
+                    b.Property<string>("Profession");
 
                     b.Property<string>("SecurityStamp");
 
@@ -78,6 +90,31 @@ namespace EcoloWeb.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("EcoloWeb.Data.Entity.Identity.Compromiso", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid>("CreateBy");
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<bool>("Inactive");
+
+                    b.Property<DateTime>("LastModificationDate");
+
+                    b.Property<Guid>("ModifiedBy");
+
+                    b.Property<string>("Notas")
+                        .IsRequired()
+                        .HasColumnType("char(600)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Compromisos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
