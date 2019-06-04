@@ -59,12 +59,20 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Display(Name = "Fecha Nacimiento")]
-            public DateTime DOB { get; set; }
+            [DataType(DataType.Date)]
+            public DateTime Birthdate { get; set; }
 
             [Required]
-            [Display(Name = "Telefono")]
+            [Display(Name = "Teléfeno")]
             public string Telefono { get; set; }
 
+          
+            [Display(Name = "Teléfeno Empresa")]
+            public string PhoneCompany { get; set; }
+
+        
+            [Display(Name = "Contacto Empresa")]
+            public string Contact { get; set; }
 
             public string TipoRegistro { get; set; }
 
@@ -72,6 +80,11 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [DataType(DataType.EmailAddress)]
+            [Display(Name = "Confirm Email")]
+            [Compare("Email", ErrorMessage = "The Email and confirmation Email do not match.")]
+            public string ConfirmEmail { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -83,6 +96,18 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            
+            [Display(Name = "Ocupación")]
+            public string Occupation { get; set; }
+
+          
+            [Display(Name = "Profesión")]
+            public string Profession { get; set; }
+
+          
+            [Display(Name = "Teléfono casa")]
+            public string PhoneHouse { get; set; }
         }
 
         public void OnGet([FromQuery] string tipoRegistro, string returnUrl = null)
@@ -107,7 +132,11 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             {
 
 
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, Lastname = Input.LastName, PhoneNumber = Input.Telefono, DOB = Input.DOB };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, Lastname = Input.LastName, PhoneNumber = Input.Telefono,
+                Birthdate = Input.Birthdate, Occupation = Input.Occupation, Profession = Input.Profession, PhoneHouse = Input.PhoneHouse,PhoneCompany = Input.PhoneCompany, Contact = Input.Contact,
+                    
+
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

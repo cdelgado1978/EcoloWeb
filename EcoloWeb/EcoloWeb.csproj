@@ -8,12 +8,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20190321200339_ChangeIdentityUserToApplicationUser.cs" />
+    <Compile Remove="Data\Migrations\20190321200339_ChangeIdentityUserToApplicationUser.Designer.cs" />
     <Compile Remove="Data\Migrations\20190410031709_dbUpdate.cs" />
     <Compile Remove="Data\Migrations\20190410031709_dbUpdate.Designer.cs" />
     <Compile Remove="Data\Migrations\20190414140302_InitialCreate.cs" />
     <Compile Remove="Data\Migrations\20190414140302_InitialCreate.Designer.cs" />
     <Compile Remove="Data\Migrations\20190414140527_InitialCreate.cs" />
     <Compile Remove="Data\Migrations\20190414140527_InitialCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190414141011_InitialCreate.cs" />
+    <Compile Remove="Data\Migrations\20190414141011_InitialCreate.Designer.cs" />
+    <Compile Remove="Data\Migrations\20190604170248_Initialcreate.cs" />
+    <Compile Remove="Data\Migrations\20190604170248_Initialcreate.Designer.cs" />
+    <Compile Remove="Migrations\20190508194152_InitialCreate.cs" />
+    <Compile Remove="Migrations\20190508194152_InitialCreate.Designer.cs" />
   </ItemGroup>
 
 

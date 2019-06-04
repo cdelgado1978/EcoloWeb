@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EcoloWeb.Data.Migrations
 {
-    public partial class ChangeIdentityUserToApplicationUser : Migration
+    public partial class Initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,6 +27,37 @@ namespace EcoloWeb.Data.Migrations
                 table: "AspNetUserTokens",
                 nullable: false,
                 defaultValue: "");
+
+            migrationBuilder.AddColumn<DateTime>(
+                name: "Birthdate",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
+            migrationBuilder.AddColumn<string>(
+                name: "Contact",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Occupation",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "PhoneCompany",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "PhoneHouse",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Profession",
+                table: "AspNetUsers",
+                nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "Discriminator",
@@ -69,13 +102,58 @@ namespace EcoloWeb.Data.Migrations
                 table: "AspNetRoleClaims",
                 nullable: false,
                 defaultValue: "");
+
+            migrationBuilder.CreateTable(
+                name: "Compromisos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Inactive = table.Column<bool>(nullable: false),
+                    CreateDate = table.Column<DateTime>(nullable: false),
+                    CreateBy = table.Column<Guid>(nullable: false),
+                    LastModificationDate = table.Column<DateTime>(nullable: false),
+                    ModifiedBy = table.Column<Guid>(nullable: false),
+                    Notas = table.Column<string>(type: "char(600)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compromisos", x => x.Id);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Compromisos");
+
             migrationBuilder.DropColumn(
                 name: "Discriminator",
                 table: "AspNetUserTokens");
+
+            migrationBuilder.DropColumn(
+                name: "Birthdate",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Contact",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Occupation",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "PhoneCompany",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "PhoneHouse",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Profession",
+                table: "AspNetUsers");
 
             migrationBuilder.DropColumn(
                 name: "Discriminator",
