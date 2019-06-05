@@ -101,11 +101,25 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
             [Display(Name = "Ocupación")]
             public string Occupation { get; set; }
 
-          
+            [Display(Name = "Dirección")]
+            public string Home { get; set; }
+
+            [Display(Name = "Curso/Grado")]
+            public string Course { get; set; }
+
+
             [Display(Name = "Profesión")]
             public string Profession { get; set; }
 
-          
+            [Display(Name = "Nombre madre")]
+            public string Mother { get; set; }
+
+
+            [Display(Name = "Nombre del Padre o Tutor")]
+            public string Father { get; set; }
+
+
+
             [Display(Name = "Teléfono casa")]
             public string PhoneHouse { get; set; }
         }
@@ -133,8 +147,9 @@ namespace EcoloWeb.Areas.Identity.Pages.Account
 
 
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Name = Input.Name, Lastname = Input.LastName, PhoneNumber = Input.Telefono,
-                Birthdate = Input.Birthdate, Occupation = Input.Occupation, Profession = Input.Profession, PhoneHouse = Input.PhoneHouse,PhoneCompany = Input.PhoneCompany, Contact = Input.Contact,
-                    
+                Birthdate = Input.Birthdate, Occupation = Input.Occupation, Profession = Input.Profession, PhoneHouse = Input.PhoneHouse,PhoneCompany = Input.PhoneCompany,
+                Contact = Input.Contact, Home= Input.Home,Course = Input.Course,  Mother= Input.Mother, Father = Input.Father
+
 
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);

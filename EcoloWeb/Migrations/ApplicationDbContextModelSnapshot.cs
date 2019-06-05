@@ -33,6 +33,8 @@ namespace EcoloWeb.Migrations
 
                     b.Property<string>("Contact");
 
+                    b.Property<string>("Course");
+
                     b.Property<DateTime>("DOB");
 
                     b.Property<string>("Email")
@@ -40,11 +42,17 @@ namespace EcoloWeb.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("Father");
+
+                    b.Property<string>("Home");
+
                     b.Property<string>("Lastname");
 
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Mother");
 
                     b.Property<string>("Name");
 

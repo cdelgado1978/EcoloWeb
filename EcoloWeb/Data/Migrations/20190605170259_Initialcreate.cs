@@ -40,6 +40,26 @@ namespace EcoloWeb.Data.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
+                name: "Course",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Father",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Home",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "Mother",
+                table: "AspNetUsers",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
                 name: "Occupation",
                 table: "AspNetUsers",
                 nullable: true);
@@ -137,6 +157,22 @@ namespace EcoloWeb.Data.Migrations
 
             migrationBuilder.DropColumn(
                 name: "Contact",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Course",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Father",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Home",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "Mother",
                 table: "AspNetUsers");
 
             migrationBuilder.DropColumn(

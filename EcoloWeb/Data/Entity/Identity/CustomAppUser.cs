@@ -43,6 +43,21 @@ namespace EcoloWeb.Data.Entity.Identity
         [PersonalData] 
         public DateTime Birthdate { get; set; }
 
+        [PersonalData]
+        public string Home { get; set; }
+
+        [PersonalData]
+        public string Course { get; set; }
+
+
+        [PersonalData]
+        public string Mother { get; set; }
+
+
+        [PersonalData]
+        public string Father { get; set; }
+
+
         //public virtual ICollection<ApplicationUserClaim> Claims { get; set; }
         //public virtual ICollection<ApplicationUserLogin> Logins { get; set; }
         //public virtual ICollection<ApplicationUserToken> Tokens { get; set; }

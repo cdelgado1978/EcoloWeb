@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoloWeb.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190604184058_Initialcreate")]
+    [Migration("20190605170259_Initialcreate")]
     partial class Initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,6 +35,8 @@ namespace EcoloWeb.Data.Migrations
 
                     b.Property<string>("Contact");
 
+                    b.Property<string>("Course");
+
                     b.Property<DateTime>("DOB");
 
                     b.Property<string>("Email")
@@ -42,11 +44,17 @@ namespace EcoloWeb.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("Father");
+
+                    b.Property<string>("Home");
+
                     b.Property<string>("Lastname");
 
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Mother");
 
                     b.Property<string>("Name");
 
